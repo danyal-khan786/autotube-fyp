@@ -1,0 +1,8 @@
+virt/
+misc/
+.vscode/
+.vs/
+*.env
+secrets.json
+*.pem
+
