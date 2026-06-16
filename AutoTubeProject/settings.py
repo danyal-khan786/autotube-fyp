@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'decouple',
     'crispy_forms',
-    'AccountsApp',
+    'crispy_bootstrap5',
+    'AuthApp',
     'ToolkitApp',
+    'AIChatbotApp'
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,5 @@ STATIC_URL = 'static/'
 # Auth Redirects
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

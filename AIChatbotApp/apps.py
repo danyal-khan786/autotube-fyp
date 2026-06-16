@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ToolkitappConfig(AppConfig):
+class AichatbotappConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'ToolkitApp'
+    name = 'AIChatbotApp'

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}AutoTube AI - Next-Gen YouTube Optimization{% endblock %}
+
+{% block content %}
+<div class="row align-items-center py-5 my-5">
+    <div class="col-lg-6 mb-5 mb-lg-0 pe-lg-5">
+        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-3 border border-primary-subtle shadow-sm">
+            <i class="fa-solid fa-bolt text-warning me-2"></i>Powered by Cohere AI
+        </span>
+        <h1 class="display-4 fw-bolder mb-4 text-dark" style="line-height: 1.2;">
+            Dominate the Algorithm with <span class="text-primary">AutoTube AI.</span>
+        </h1>
+        <p class="lead text-muted mb-5">
+            Stop guessing your SEO. Instantly extract transcripts, generate magnetic titles, and build data-driven metadata reports using advanced natural language processing.
+        </p>
+        <div class="d-flex gap-3">
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg rounded-pill px-5 shadow border-0 hover-elevate">
+                    <i class="fa-solid fa-rocket me-2"></i>Launch Dashboard
+                </a>
+            {% else %}
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg rounded-pill px-5 shadow border-0 hover-elevate">
+                    <i class="fa-solid fa-user-plus me-2"></i>Get Started Free
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg rounded-pill px-5 hover-elevate">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-lg-6 text-center">
+        <div class="position-relative">
+            <div class="card glass-card border-0 shadow-lg p-4 text-start position-relative z-index-2 ms-lg-5 hover-elevate">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="fa-brands fa-youtube text-danger fs-1 me-3"></i>
+                    <div>
+                        <h5 class="fw-bold mb-0">Analysis Complete</h5>
+                        <small class="text-success"><i class="fa-solid fa-circle-check me-1"></i>Optimization Ready</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="bg-secondary bg-opacity-10 rounded p-2 mb-2 w-75"></div>
+                    <div class="bg-secondary bg-opacity-10 rounded p-2 mb-2 w-50"></div>
+                    <div class="bg-secondary bg-opacity-10 rounded p-2 w-100"></div>
+                </div>
+                <div class="d-flex gap-2 mt-4">
+                    <span class="badge bg-primary rounded-pill"><i class="fa-solid fa-hashtag me-1"></i>Viral</span>
+                    <span class="badge bg-danger rounded-pill"><i class="fa-solid fa-fire me-1"></i>Trending</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row pt-5 mt-5 border-top">
+    <div class="col-12 text-center mb-5">
+        <h2 class="fw-bold">Enterprise-Grade Features</h2>
+        <p class="text-muted">Everything you need to scale your content strategy.</p>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card glass-card h-100 border-0 p-4 text-center hover-elevate shadow-sm">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-4" style="width: 70px; height: 70px;">
+                <i class="fa-solid fa-brain fs-2"></i>
+            </div>
+            <h4 class="fw-bold">Contextual AI</h4>
+            <p class="text-muted mb-0">Analyzes millions of data points to ensure your titles and descriptions align with audience sentiment and tone.</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card glass-card h-100 border-0 p-4 text-center hover-elevate shadow-sm">
+            <div class="bg-danger bg-opacity-10 text-danger rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-4" style="width: 70px; height: 70px;">
+                <i class="fa-solid fa-bullseye fs-2"></i>
+            </div>
+            <h4 class="fw-bold">Precision SEO</h4>
+            <p class="text-muted mb-0">Generates 15 highly targeted tags and hashtags specifically engineered to trigger the YouTube recommendation algorithm.</p>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="card glass-card h-100 border-0 p-4 text-center hover-elevate shadow-sm">
+            <div class="bg-success bg-opacity-10 text-success rounded-circle d-inline-flex justify-content-center align-items-center mx-auto mb-4" style="width: 70px; height: 70px;">
+                <i class="fa-solid fa-file-pdf fs-2"></i>
+            </div>
+            <h4 class="fw-bold">One-Click Reports</h4>
+            <p class="text-muted mb-0">Export beautifully formatted PDF strategy documents instantly, completely bypassing manual data entry.</p>
+        </div>
+    </div>
+</div>
+
+<div class="row pt-5 mt-5">
+    <div class="col-12 text-center mb-5">
+        <span class="text-uppercase text-primary fw-bold tracking-wide">Workflow</span>
+        <h2 class="fw-bold mt-2">Three Steps to Growth</h2>
+    </div>
+    
+    <div class="col-lg-10 mx-auto">
+        <div class="row text-center text-md-start align-items-center">
+            <div class="col-md-4 mb-4 mb-md-0 text-center">
+                <i class="fa-solid fa-link text-muted" style="font-size: 4rem;"></i>
+                <h5 class="fw-bold mt-3">1. Paste URL</h5>
+                <p class="text-muted small">Input any public YouTube video link.</p>
+            </div>
+            <div class="col-md-4 mb-4 mb-md-0 text-center">
+                <i class="fa-solid fa-wand-magic-sparkles text-primary" style="font-size: 4rem;"></i>
+                <h5 class="fw-bold mt-3">2. AI Processing</h5>
+                <p class="text-muted small">Cohere LLM rips and analyzes the transcript.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="fa-solid fa-chart-line text-success" style="font-size: 4rem;"></i>
+                <h5 class="fw-bold mt-3">3. Dominate</h5>
+                <p class="text-muted small">Apply the optimized metadata to your studio.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 pt-5 border-top">
+    <div class="col-12 text-center text-muted small pb-4">
+        <p class="mb-1 fw-bold text-dark">
+            <i class="fa-solid fa-code text-primary me-2"></i>Developed for Final Year Project Defense
+        </p>
+        
+    </div>
+</div>
+
+<style>
+    .hover-elevate {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-elevate:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    }
+    .tracking-wide {
+        letter-spacing: 0.1em;
+    }
+</style>
+{% endblock %}
