@@ -127,6 +127,7 @@ STATIC_URL = 'static/'
 
 # manual configurations beyond this line!
 # Auth Redirects
+LOGIN_URL='/auth/login'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'login'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

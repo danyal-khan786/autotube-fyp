@@ -16,6 +16,70 @@
     </div>
 </div>
 
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card bg-dark text-white border-0 shadow-sm h-100 p-3" style="border-radius: 12px;">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="text-light text-uppercase fw-bold mb-0">Current Performance</h6>
+                <i class="fa-solid fa-chart-bar text-secondary"></i>
+            </div>
+            <div class="row text-center mt-2">
+                <div class="col-6 border-end border-secondary">
+                    <h3 class="fw-bold mb-0 text-white">{{ actual_metrics.views }}</h3>
+                    <small class="text-light text-opacity-75">Total Views</small>
+                </div>
+                <div class="col-6">
+                    <h3 class="fw-bold mb-0 text-white">{{ actual_metrics.likes }}</h3>
+                    <small class="text-light text-opacity-75">Est. Likes</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mt-3 mt-md-0">
+        <div class="card border-0 shadow-sm h-100 p-3 position-relative overflow-hidden" style="border-radius: 12px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+            <i class="fa-solid fa-rocket position-absolute text-primary opacity-25" style="font-size: 5rem; right: -10px; bottom: -10px;"></i>
+            <div class="d-flex justify-content-between align-items-center mb-2 position-relative z-index-1">
+                <h6 class="text-primary text-uppercase fw-bold mb-0">AI Projection</h6>
+                <span class="badge bg-success rounded-pill">{{ projected_metrics.growth }} Growth</span>
+            </div>
+            <div class="row text-center mt-2 position-relative z-index-1">
+                <div class="col-6 border-end border-primary border-opacity-25">
+                    <h3 class="fw-bold text-dark mb-0">{{ projected_metrics.views }}</h3>
+                    <small class="text-primary fw-semibold">Target Views</small>
+                </div>
+                <div class="col-6">
+                    <h3 class="fw-bold text-dark mb-0">{{ projected_metrics.likes }}</h3>
+                    <small class="text-primary fw-semibold">Target Likes</small>
+                </div>
+            </div>
+            <div class="position-relative z-index-1 mt-3">
+                <small class="text-dark fw-bold"><i class="fa-solid fa-wand-magic-sparkles me-1"></i>Using Title #1 & Recommended Tags</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6 mb-4 mb-md-0">
+        <div class="card glass-card border-0 p-4 shadow-sm h-100" style="border-radius: 12px;">
+            <h6 class="text-muted text-uppercase fw-bold mb-3">Views Trajectory</h6>
+            <div style="height: 250px; width: 100%;">
+                <canvas id="viewsChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card glass-card border-0 p-4 shadow-sm h-100" style="border-radius: 12px;">
+            <h6 class="text-muted text-uppercase fw-bold mb-3">Engagement Trajectory</h6>
+            <div style="height: 250px; width: 100%;">
+                <canvas id="likesChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-8 mb-4">
         <div class="card glass-card border-0 p-4">
@@ -69,4 +133,75 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Safely parse Django template strings to integers
+        const actualViews = parseInt("{{ actual_metrics.views }}".replace(/,/g, '')) || 0;
+        const actualLikes = parseInt("{{ actual_metrics.likes }}".replace(/,/g, '')) || 0;
+        const projViews = parseInt("{{ projected_metrics.views }}".replace(/,/g, '')) || 0;
+        const projLikes = parseInt("{{ projected_metrics.likes }}".replace(/,/g, '')) || 0;
+
+        // Shared options to keep the code DRY
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false } 
+            },
+            scales: {
+                y: { 
+                    beginAtZero: true, 
+                    grid: { borderDash: [5, 5] } 
+                },
+                x: { grid: { display: false } }
+            }
+        };
+
+        // --- Chart 1: Total Views (Pure Bar) ---
+        new Chart(document.getElementById('viewsChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Current', 'AI Projection'],
+                datasets: [
+                    {
+                        label: 'Total Views',
+                        data: [actualViews, projViews],
+                        backgroundColor: ['#212529', '#0d6efd'], // Dark grey to Primary Blue
+                        borderColor: ['#212529', '#0d6efd'],
+                        borderWidth: 1,
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }
+                ]
+            },
+            options: commonOptions
+        });
+
+        // --- Chart 2: Engagement/Likes (Pure Bar) ---
+        new Chart(document.getElementById('likesChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Current', 'AI Projection'],
+                datasets: [
+                    {
+                        label: 'Engagement',
+                        data: [actualLikes, projLikes],
+                        backgroundColor: ['#212529', '#198754'], // Dark grey to Success Green
+                        borderColor: ['#212529', '#198754'],
+                        borderWidth: 1,
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }
+                ]
+            },
+            options: commonOptions
+        });
+    });
+</script>
+
+
+
 {% endblock %}

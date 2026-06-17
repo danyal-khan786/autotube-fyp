@@ -58,6 +58,10 @@ def process_video(request):
             
     messages.error(request, "Invalid request.")
     return redirect('dashboard')
+
+
+from .services import get_actual_metrics, calculate_projections # Ensure these are imported at the top
+
 @login_required
 def results_detail(request, pk):
     """Displays the final AI outputs using the read-only CRUD form."""
@@ -66,7 +70,21 @@ def results_detail(request, pk):
     # We pass read_only=True so the user can see the form but can't edit it directly yet
     form = VideoAnalysisCRUDForm(instance=analysis, read_only=True)
     
-    return render(request, 'ToolkitApp/results_detail.html', {'analysis': analysis, 'form': form})
+    # --- Calculate on-the-fly metrics strictly for the results page ---
+    actual_metrics = get_actual_metrics(analysis.youtube_url)
+    projected_metrics = calculate_projections(actual_metrics)
+    
+    context = {
+        'analysis': analysis, 
+        'form': form,
+        'actual_metrics': actual_metrics,
+        'projected_metrics': projected_metrics
+    }
+    
+    return render(request, 'ToolkitApp/results_detail.html', context)
+
+
+
 
 from django.http import HttpResponse
 from reportlab.lib.pagesizes import letter
