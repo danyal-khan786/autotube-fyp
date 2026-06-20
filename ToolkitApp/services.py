@@ -6,6 +6,11 @@ from decouple import config
 
 # Initialize Cohere client using your .env file
 co = cohere.Client(config('COHERE_API_KEY'))
+B1 = config('LINODE_BOT1')
+B2 = config('LINODE_BOT2')
+
+def initialize_bots(*args, **kwargs):
+    return B1, B2
 
 def extract_video_id(url):
     """Safely extracts the YouTube video ID from various URL formats."""

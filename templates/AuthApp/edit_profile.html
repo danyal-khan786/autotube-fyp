@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Account Settings - AutoTube AI{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-md-8 col-lg-6">
+        <div class="card glass-card border-0 p-5 shadow-sm" style="border-radius: 16px;">
+            <div class="text-center mb-4">
+                <i class="fa-solid fa-user-gear text-primary fs-1 mb-3"></i>
+                <h2 class="fw-bold">Settings</h2>
+            </div>
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+                
+                <h5 class="text-muted border-bottom pb-2 mb-3">Account Details</h5>
+                {{ account_form|crispy }}
+                
+                <h5 class="text-muted border-bottom pb-2 mb-3 mt-4">Public Profile</h5>
+                {{ profile_form|crispy }}
+                
+                <div class="d-grid mt-4 pt-2">
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                        <i class="fa-solid fa-floppy-disk me-2"></i>Save All Changes
+                    </button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-4">
+                <a href="{% url 'dashboard' %}" class="text-decoration-none text-secondary">
+                    <i class="fa-solid fa-arrow-left me-2"></i>Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -125,6 +125,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+# 2. Additional absolute paths where Django will look for static files during development
+STATICFILES_DIRS = [
+    BASE_DIR / "static", 
+]
+
+# 3. The absolute directory where production-ready static files will be collected
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # manual configurations beyond this line!
 # Auth Redirects
 LOGIN_URL='/auth/login'

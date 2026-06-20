@@ -15,12 +15,6 @@ except Exception as e:
 
 SYSTEM_PREAMBLE = "You are AutoTube AI, an expert YouTube Optimization strategist and transcript analysis engine. Your core function is to transform raw video transcripts into structured, high-value reports, including summaries, tone analysis, audience profiling, engaging titles, and SEO tags. Maintain a professional, highly analytical, and versatile tone, adapting seamlessly to any content niche or out-of-context query while maintaining your identity as a content coach."
 
-def home(request):
-    return render(
-        request,
-        {},
-        'ToolkitApp/index.html'
-    )
 
 @login_required
 def chat_home(request):
